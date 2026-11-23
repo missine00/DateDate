@@ -6,8 +6,208 @@
 <meta name="description" content="一對手作 CraftDate HK — 集合香港本地中小型工作坊，為情侶預先排好的手作約會路線。">
 <meta name="theme-color" content="#FBF8F4">
 <title>一對手作 CraftDate HK｜香港手作約會</title>
-<link rel="stylesheet" href="styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23C4655A'/><path d='M9 17l5 5 9-11' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<style>
+:root{
+  --bg:#FBF8F4;
+  --surface:#FFFFFF;
+  --surface-2:#F5EFE8;
+  --ink:#2E2A27;
+  --muted:#6B635C;
+  --line:#E7DDD2;
+  --rose:#C4655A;
+  --rose-soft:#F7E6E2;
+  --sage:#5F8067;
+  --sage-soft:#E7F0E8;
+  --gold:#B58A45;
+  --gold-soft:#F7EFDF;
+  --danger:#A32D2D;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(70,50,35,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,sans-serif;
+  line-height:1.7;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font-family:inherit}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:#fff;padding:8px 14px;z-index:100}
+.skip:focus{left:10px;top:10px}
+
+.site-header{position:sticky;top:0;z-index:40;background:rgba(251,248,244,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;gap:28px;height:66px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;white-space:nowrap}
+.brand small{display:block;font-size:10px;font-weight:500;color:var(--muted);letter-spacing:.05em}
+.nav-links{display:flex;gap:22px;margin-left:auto;font-size:13.5px;color:var(--muted);font-weight:500}
+.nav-links a:hover{color:var(--rose)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:10px;padding:12px 22px;font-size:14px;font-weight:700;cursor:pointer;transition:.18s;text-align:center}
+.btn-primary{background:var(--rose);color:#fff;border-color:var(--rose)}
+.btn-primary:hover{background:#AE564C;border-color:#AE564C}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--rose);color:var(--rose)}
+.btn-sm{padding:8px 16px;font-size:13px}
+.btn-full{width:100%}
+
+.hero{padding:74px 0 76px;background:radial-gradient(700px 300px at 92% -10%,rgba(196,101,90,.12),transparent 65%)}
+.hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:50px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:99px;background:var(--rose-soft);color:var(--rose);font-size:12px;font-weight:800;letter-spacing:.05em}
+.hero h1{font-size:clamp(38px,5vw,60px);line-height:1.18;margin:20px 0 16px;letter-spacing:-.03em;font-weight:900}
+.hero h1 .accent{color:var(--rose)}
+.lede{font-size:16px;color:var(--muted);max-width:600px;margin:0 0 28px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:30px;font-size:12.5px;color:var(--muted)}
+.hero-meta span{display:flex;align-items:center;gap:6px}
+.hero-meta span:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--sage)}
+.hero-art svg{width:100%;height:auto;display:block}
+
+.section{padding:68px 0;border-top:1px solid var(--line)}
+.band{background:var(--surface-2)}
+.section-head{margin-bottom:30px}
+.kicker{font-size:11.5px;font-weight:800;color:var(--rose);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}
+.section-head h2{font-size:clamp(25px,3vw,34px);margin:0 0 8px;font-weight:900;letter-spacing:-.02em}
+.section-head p{margin:0;color:var(--muted);font-size:14.5px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+.feature,.step{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.feature-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:13px;font-weight:900;margin-bottom:16px}
+.feature-icon.sage{background:var(--sage-soft);color:var(--sage)}
+.feature-icon.rose{background:var(--rose-soft);color:var(--rose)}
+.feature-icon.gold{background:var(--gold-soft);color:var(--gold)}
+.feature h3,.step h3{font-size:16px;margin:0 0 8px;font-weight:800}
+.feature p,.step p{font-size:13.5px;color:var(--muted);margin:0}
+.step{position:relative;padding-top:28px}
+.step span{position:absolute;top:20px;right:22px;font-size:30px;font-weight:900;color:var(--line)}
+
+.route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.route-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.route-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(70,50,35,.12)}
+.route-art{height:132px;position:relative;overflow:hidden}
+.route-art.a{background:#F7E6E2}
+.route-art.b{background:#E7F0E8}
+.route-art.c{background:#F7EFDF}
+.route-art svg{position:absolute;inset:0;width:100%;height:100%}
+.route-art .badge{position:absolute;left:18px;top:16px;background:rgba(255,255,255,.85);border-radius:99px;padding:4px 11px;font-size:11px;font-weight:800;color:var(--ink)}
+.route-body{padding:22px;display:flex;flex-direction:column;gap:12px;flex:1}
+.route-body h3{font-size:19px;margin:0;font-weight:900}
+.route-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:11px;background:var(--surface-2);color:var(--muted);border-radius:6px;padding:3px 9px;font-weight:500}
+.route-body p{font-size:13px;color:var(--muted);margin:0;flex:1}
+.route-facts{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted)}
+.route-facts b{color:var(--ink)}
+.route-price{display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding-top:14px;border-top:1px dashed var(--line)}
+.route-price b{font-size:17px;color:var(--rose);font-weight:900}
+.route-price span{font-size:11.5px;color:var(--muted)}
+.route-actions{display:flex;gap:8px;padding:0 22px 22px}
+.route-actions .btn{flex:1;padding:10px 12px;font-size:13px}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.fbtn{border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:99px;padding:7px 15px;font-size:12.5px;font-weight:600;cursor:pointer;transition:.18s}
+.fbtn:hover{border-color:var(--rose);color:var(--rose)}
+.fbtn.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.ws-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.ws{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:9px}
+.ws h3{font-size:14px;margin:0;font-weight:800;line-height:1.45}
+.ws-meta{display:flex;flex-wrap:wrap;gap:5px;font-size:11px;color:var(--muted)}
+.ws p{font-size:12px;color:var(--muted);margin:0;flex:1}
+.ws-foot{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px dashed var(--line)}
+.ws-foot b{font-size:12.5px;color:var(--rose)}
+.ws-foot span{font-size:11px;color:var(--gold)}
+.hide{display:none !important}
+
+.notice{margin-top:24px;background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:16px 18px;font-size:13px;color:#6E5730}
+.notice strong{color:#5A4524}
+
+.booking-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;align-items:start}
+.mini-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px}
+.mini-stats div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+.mini-stats b{display:block;font-size:24px;color:var(--rose);font-weight:900;line-height:1.3}
+.mini-stats span{font-size:11.5px;color:var(--muted)}
+.fineprint{font-size:11.5px;color:var(--muted);margin:10px 0 0}
+
+.booking-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;border:0;padding:0;min-width:0}
+.field label,.field legend{font-size:12.5px;font-weight:700;color:var(--ink)}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:13.5px;background:#fff;color:var(--ink)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--rose-soft);border-color:var(--rose)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.addons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.addon{display:flex;align-items:flex-start;gap:8px;border:1px solid var(--line);border-radius:10px;padding:10px;cursor:pointer;font-size:12px}
+.addon:hover{border-color:var(--rose)}
+.addon input{margin-top:3px;accent-color:var(--rose)}
+.addon b{display:block;font-size:12px}
+.addon span{color:var(--muted);font-size:11px}
+.total-row{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px;background:var(--rose-soft);border-radius:10px;margin-top:6px;font-size:13px;font-weight:700}
+.total-row strong{font-size:20px;color:var(--rose);font-weight:900}
+.form-error{color:var(--danger);font-size:12.5px;margin:10px 0 0}
+
+.success{text-align:center;padding:20px 4px}
+.success-mark{width:52px;height:52px;border-radius:50%;background:var(--sage-soft);color:var(--sage);display:grid;place-items:center;font-size:26px;font-weight:900;margin:0 auto 14px}
+.success h3{font-size:20px;margin:0 0 6px}
+.success-ref{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;color:var(--rose);margin:0 0 18px}
+.success-summary{background:var(--surface-2);border-radius:12px;padding:16px;text-align:left;font-size:13px;margin-bottom:16px}
+.success-summary div{display:flex;justify-content:space-between;gap:10px;padding:4px 0}
+.success-summary span{color:var(--muted)}
+
+.faq-wrap{max-width:820px;margin:0 auto}
+.faq-list{border-top:1px solid var(--line)}
+.faq-list details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq-list summary{cursor:pointer;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary:after{content:"+";color:var(--rose);font-size:19px;font-weight:500}
+.faq-list details[open] summary:after{content:"−"}
+.faq-list p{font-size:13.5px;color:var(--muted);margin:12px 0 0}
+
+.site-footer{padding:40px 0 48px;border-top:1px solid var(--line);background:var(--surface)}
+.footer-inner{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.footer-inner strong{font-size:15px}
+.footer-inner p{font-size:12px;color:var(--muted);margin:6px 0 0}
+.footer-note{max-width:520px}
+
+.modal[hidden]{display:none}
+.modal-backdrop{position:fixed;inset:0;background:rgba(35,28,22,.45);z-index:50}
+.modal-panel{position:fixed;z-index:51;top:50%;left:50%;transform:translate(-50%,-50%);width:min(720px,calc(100vw - 32px));max-height:88vh;overflow-y:auto;background:var(--surface);border-radius:18px;padding:30px;box-shadow:0 30px 80px rgba(0,0,0,.2)}
+.modal-close{position:absolute;right:16px;top:12px;border:0;background:none;font-size:26px;line-height:1;cursor:pointer;color:var(--muted)}
+.modal-close:hover{color:var(--rose)}
+.modal-head h2{font-size:25px;margin:8px 0 6px;font-weight:900}
+.modal-head p{font-size:13.5px;color:var(--muted);margin:0}
+.modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.modal-section{margin-top:24px}
+.modal-section h3{font-size:14px;margin:0 0 12px;font-weight:800}
+.tl-item{display:grid;grid-template-columns:58px 18px 1fr;gap:10px;padding-bottom:16px;position:relative}
+.tl-item:last-child{padding-bottom:0}
+.tl-time{font-size:12px;font-weight:800;color:var(--rose);text-align:right;padding-top:2px}
+.tl-rail{display:flex;justify-content:center;position:relative}
+.tl-rail:before{content:"";position:absolute;top:13px;bottom:-16px;width:2px;background:var(--line)}
+.tl-item:last-child .tl-rail:before{display:none}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--rose);margin-top:4px;position:relative;z-index:1;box-shadow:0 0 0 4px var(--rose-soft)}
+.tl-item.calm .dot{background:var(--sage);box-shadow:0 0 0 4px var(--sage-soft)}
+.tl-content b{display:block;font-size:13.5px;margin-bottom:2px}
+.tl-content p{font-size:12px;color:var(--muted);margin:0}
+.budget-box{background:var(--surface-2);border-radius:12px;padding:16px}
+.budget-row{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:5px 0}
+.budget-row span{color:var(--muted)}
+.modal-cta{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.modal-cta .btn{flex:1;min-width:160px}
+
+@media(max-width:960px){
+  .hero-grid,.booking-grid{grid-template-columns:1fr}
+  .hero-art{display:none}
+  .route-grid,.grid-3{grid-template-columns:repeat(2,1fr)}
+  .ws-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:620px){
+  .nav-links{display:none}
+  .section{padding:50px 0}
+  .route-grid,.grid-3,.ws-grid,.field-row,.addons,.mini-stats{grid-template-columns:1fr}
+  .hero h1{font-size:40px}
+  .modal-panel{padding:24px 18px}
+}
+
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='8'%20fill='%23C4655A'/%3E%3Cpath%20d='M9%2017l5%205%209-11'%20fill='none'%20stroke='white'%20stroke-width='3'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
 </head>
 <body>
 
@@ -254,7 +454,387 @@
   </div>
 </div>
 
-<script src="data.js"></script>
-<script src="app.js"></script>
+<script>
+/* 一對手作 CraftDate HK — 示範資料
+   所有價錢均為港幣，屬公開資料整理的參考值。 */
+
+const ROUTES = [
+  {
+    id: 'a',
+    name: '中環對戒約會',
+    theme: '經典儀式感',
+    area: '中環 · 上環',
+    duration: '約 6 小時',
+    level: '容易',
+    basePrice: 3080,
+    priceNote: 'HK$3,080–4,180 / 對',
+    tags: ['銀戒指', '古董街', '維港黃昏'],
+    blurb: '在 PMQ 親手鎚打一對銀戒，牽手走過荷李活道，黃昏到中環海濱看維港。最適合紀念日與「認真一點」的約會。',
+    highlight: '核心作品：一對可刻字銀戒指，即日帶走。',
+    timeline: [
+      { time: '10:30', title: 'PMQ 元創方報到', desc: '早 15 分鐘到，逛 H402 展廳與設計小店，挑選喜歡的紋理與刻字靈感。', kind: 'calm' },
+      { time: '11:00', title: 'Obellery 銀戒指製作班', desc: '約 1.5–2 小時，由切割、退火、焊接到打磨拋光，親手做出一對戒指。', kind: 'craft' },
+      { time: '13:00', title: '荷李活道古董街散步', desc: '帶著新手作去曬太陽，沿途古董店、畫廊與老店都很好拍。', kind: 'calm' },
+      { time: '13:45', title: 'SOHO 午餐／大館打卡', desc: '半山扶梯沿線餐廳選擇多；想節省預算可到大館公共空間坐坐。', kind: 'calm' },
+      { time: '16:30', title: '中環海濱 · 摩天輪或遊船', desc: '摩天輪約 HK$20／位；想升級可選張保仔維港遊船約 HK$270／位。', kind: 'craft' },
+      { time: '19:00', title: '中環／上環晚餐收尾', desc: '建議預訂靠窗或露天座位，把戒指戴上再拍一張合照。', kind: 'calm' }
+    ],
+    budget: [
+      ['Obellery 銀戒指班 ×2', 'HK$1,840'],
+      ['午餐＋咖啡', 'HK$400–600'],
+      ['摩天輪／遊船', 'HK$40–540'],
+      ['晚餐', 'HK$800–1,200']
+    ]
+  },
+  {
+    id: 'b',
+    name: '東九龍手作雙拼',
+    theme: '高性價比',
+    area: '新蒲崗 · 觀塘',
+    duration: '約 7 小時',
+    level: '容易',
+    basePrice: 1900,
+    priceNote: 'HK$1,900–2,600 / 對',
+    tags: ['拉坯', '馬賽克燭台', '西九日落'],
+    blurb: '上午在工廈拉坯，下午到觀塘做馬賽克燭台，黃昏在西九海濱看日落。兩場工作坊都常有買一送一。',
+    highlight: '核心作品：手拉坯器皿＋土耳其風馬賽克燭台。',
+    timeline: [
+      { time: '10:00', title: 'K Studio 水墨紋拉坯', desc: '約 1–1.5 小時，平台常有買一送一。兩人各自拉一件器皿。', kind: 'craft' },
+      { time: '11:45', title: '新蒲崗／彩虹一帶午餐', desc: '工廈與街坊小店林立，人均 HK$100–150 就能吃得很滿足。', kind: 'calm' },
+      { time: '13:30', title: '觀塘 Mosaic Art Studio', desc: '土耳其風馬賽克燈／燭台製作，約 2–3 小時，晚上就能用。', kind: 'craft' },
+      { time: '16:30', title: '觀塘工廈咖啡小店', desc: '預留一小時休息，順便拍拍作品。想換口味可改做 Tufting。', kind: 'calm' },
+      { time: '17:45', title: '西九文化區海濱', desc: '從觀塘搭地鐵到九龍站，沿海濱看日落；M+ 外牆也是打卡位。', kind: 'calm' },
+      { time: '19:30', title: '圓方／西九晚餐', desc: '以燭台作餐桌主角，為這一日畫上句點。', kind: 'calm' }
+    ],
+    budget: [
+      ['K Studio 拉坯（買一送一）', '約 HK$650'],
+      ['Mosaic 燭台（買一送一）', 'HK$600–900'],
+      ['午餐＋咖啡', 'HK$300–450'],
+      ['晚餐＋交通', 'HK$350–600']
+    ]
+  },
+  {
+    id: 'c',
+    name: '藝村慢活雙紀念',
+    theme: '深度文青',
+    area: '石硤尾 · 深水埗 · 荔枝角',
+    duration: '約 8 小時',
+    level: '中等',
+    basePrice: 3160,
+    priceNote: 'HK$3,160–4,460 / 對',
+    tags: ['玻璃印畫', '大南街', '刻字銀戒'],
+    blurb: '把合照燒成一件玻璃藝術品，走進深水埗的咖啡與布料小店，再到荔枝角親手做一對可刻字銀戒。',
+    highlight: '核心作品：玻璃印畫＋刻字銀戒，雙重紀念。',
+    timeline: [
+      { time: '10:00', title: 'JCCAC 賽馬會創意藝術中心', desc: '先逛藝廊與公共空間，舊廠廈本身就是很好的拍攝場景。', kind: 'calm' },
+      { time: '10:45', title: 'Ruby Woo Glass 玻璃印畫', desc: '自選一張合照，用玻璃粉與色片熔合成玻璃畫，2 小時完成。', kind: 'craft' },
+      { time: '13:00', title: '深水埗大南街散策＋午餐', desc: '獨立書店、布料店、懷舊咖啡廳；想吃地道可試豆腐花。', kind: 'calm' },
+      { time: '15:00', title: 'Silver Workshop by Chaz', desc: '親手退火、打磨、拋光，最後刻上兩人的名字或日期。', kind: 'craft' },
+      { time: '17:30', title: '西九文化區海濱日落', desc: '帶著剛做好的戒指散步，黃昏光線最適合拍合照。', kind: 'calm' },
+      { time: '19:30', title: '圓方／西九晚餐', desc: '以一套「玻璃作品＋對戒」作結。', kind: 'calm' }
+    ],
+    budget: [
+      ['玻璃印畫工作坊 ×2', 'HK$1,160'],
+      ['銀戒／手鐲 ×2', 'HK$1,000–1,800'],
+      ['午餐＋咖啡', 'HK$400–600'],
+      ['晚餐＋交通', 'HK$600–900']
+    ]
+  }
+];
+
+const WORKSHOPS = [
+  { name: 'Obellery 手工首飾工作坊', cat: '金工銀飾', area: '中環 PMQ', price: 'HK$920 起／位', stars: 5, desc: '專業珠寶設計師指導，親手鎚打銀戒指、手鐲，完成品即日帶走。' },
+  { name: 'Silver Workshop by Chaz', cat: '金工銀飾', area: '荔枝角', price: 'HK$500–900／位', stars: 5, desc: '退火、打磨、拋光全程親手做，完成後可刻上專屬文字。' },
+  { name: 'The Handcrafter Workshop', cat: '金工銀飾', area: '葵興', price: 'HK$500 起／位', stars: 4, desc: '自選吊墜、戒指、耳環或手鐲，適合一人做一件再交換。' },
+  { name: 'Dirty Hand Studio 銅手鐲', cat: '金工銀飾', area: '葵涌', price: '二人同行價', stars: 4, desc: '由鍛打到打磨做出獨一無二的銅手鐲。' },
+  { name: 'K Studio 陶藝工作坊', cat: '陶藝拉坯', area: '新蒲崗', price: 'HK$325 起／位', stars: 5, desc: '水墨紋拉坯、浮雕裝飾等多款體驗，平台常有買一送一。' },
+  { name: 'CC ART STUDIO', cat: '陶藝拉坯', area: '太子', price: '買一送一', stars: 4, desc: '雲石紋拉坯、陶瓷御守、耳環與茶具，地鐵站 1 分鐘。' },
+  { name: '無用生活 Useless Studio', cat: '陶藝拉坯', area: '新蒲崗', price: 'HK$580 起／位', stars: 4, desc: '設拉坯課室，提供恆常班與單堂體驗，氛圍安靜。' },
+  { name: '木華陶冶 陶瓷拉坯', cat: '陶藝拉坯', area: '北角', price: 'HK$280–600／位', stars: 4, desc: '由拉坯、修坯到上釉全程參與，可製作馬克杯與花瓶。' },
+  { name: 'GET TOGETHER 簇絨地氈', cat: '簇絨馬賽克', area: '觀塘', price: '買一送一', stars: 5, desc: '無限時 Tufting，自由設計圖案，慢慢玩夠一日。' },
+  { name: 'Mosaic Art Studio 燭台', cat: '簇絨馬賽克', area: '觀塘', price: '買一送一', stars: 5, desc: '土耳其風馬賽克燈及燭台，晚上點起成品氣氛十足。' },
+  { name: 'Best Day Ever Tufting', cat: '簇絨馬賽克', area: '新蒲崗', price: 'HK$650 起／位', stars: 4, desc: '地氈、掛氈、枱墊、地氈鏡等方案，零經驗也可。' },
+  { name: 'Perfume Talk 香水工作坊', cat: '香氛蠟燭', area: '尖沙咀', price: 'HK$400–700／位', stars: 4, desc: '50ml 專屬香水，1–1.5 小時調配送給另一半的氣味。' },
+  { name: 'LCM Leather Workshop', cat: '皮革', area: '銅鑼灣', price: 'HK$385 起／位', stars: 4, desc: '皮革銀包、卡套、皮玫瑰等小物，完成品即日帶走。' },
+  { name: 'Bakebe 自助烘焙', cat: '烘焙', area: '銅鑼灣', price: 'HK$400 起／位', stars: 4, desc: '100 多款甜品蛋糕，材料全包，完成後有精美包裝。' },
+  { name: 'Home.焙小日子', cat: '烘焙', area: '旺角', price: 'HK$200 起／位', stars: 3, desc: '自助烘焙店，曲奇、蛋糕、班戟款式齊全。' },
+  { name: 'Ruby Woo Glass 玻璃印畫', cat: '玻璃工藝', area: '石硤尾 JCCAC', price: 'HK$580／位', stars: 5, desc: '自選照片創作玻璃畫，運用玻璃粉與色片熔合。' }
+];
+
+const ADDONS = [
+  { id: 'photo', name: '30 分鐘跟拍', price: 800, desc: '在工作坊與打卡位拍一組合照' },
+  { id: 'flower', name: '季節花束', price: 300, desc: '約會當天送到工作坊' },
+  { id: 'cruise', name: '維港黃昏遊船', price: 540, desc: '張保仔 aqualuna 二人票' },
+  { id: 'cake', name: '驚喜蛋糕', price: 380, desc: '晚餐前送到餐廳' }
+];
+
+</script>
+<script>
+/* 一對手作 CraftDate HK — 互動邏輯
+   純前端示範：預約意向只保存在 localStorage。 */
+
+(function () {
+  'use strict';
+
+  var STORE_KEY = 'craftdate_mvp_intents';
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var $ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+
+  function esc(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function money(n) {
+    return 'HK
+</body>
+</html>
+ + Number(n).toLocaleString('en-US');
+  }
+
+  function routeArt(id) {
+    var shapes = {
+      a: '<circle cx="250" cy="34" r="66" fill="#fff" opacity=".55"/><circle cx="60" cy="118" r="42" fill="#C4655A" opacity=".22"/><path d="M110 90q70 60 140 0" stroke="#C4655A" stroke-width="3" fill="none" opacity=".55"/>',
+      b: '<circle cx="70" cy="30" r="60" fill="#fff" opacity=".5"/><rect x="215" y="70" width="90" height="90" rx="22" fill="#5F8067" opacity=".25"/><path d="M40 120h280" stroke="#5F8067" stroke-width="2" opacity=".35"/>',
+      c: '<circle cx="285" cy="26" r="58" fill="#fff" opacity=".5"/><path d="M30 120l60-70 60 70z" fill="#B58A45" opacity=".22"/><circle cx="210" cy="60" r="34" fill="#B58A45" opacity=".18"/>'
+    };
+    return '<svg viewBox="0 0 340 132" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + shapes[id] + '</svg>';
+  }
+
+  function renderRoutes() {
+    var grid = $('#routeGrid');
+    if (!grid) return;
+    grid.innerHTML = ROUTES.map(function (r) {
+      return '' +
+        '<article class="route-card">' +
+          '<div class="route-art ' + r.id + '">' + routeArt(r.id) + '<span class="badge">' + esc(r.theme) + '</span></div>' +
+          '<div class="route-body">' +
+            '<h3>' + esc(r.name) + '</h3>' +
+            '<div class="route-tags">' + r.tags.map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
+            '<p>' + esc(r.blurb) + '</p>' +
+            '<div class="route-facts"><span>時間 <b>' + esc(r.duration) + '</b></span><span>地點 <b>' + esc(r.area) + '</b></span><span>難度 <b>' + esc(r.level) + '</b></span></div>' +
+            '<div class="route-price"><b>' + esc(r.priceNote) + '</b><span>兩人合計</span></div>' +
+          '</div>' +
+          '<div class="route-actions">' +
+            '<button class="btn btn-ghost" type="button" data-detail="' + r.id + '">查看行程</button>' +
+            '<button class="btn btn-primary" type="button" data-pick="' + r.id + '">選這條</button>' +
+          '</div>' +
+        '</article>';
+    }).join('');
+
+    $('[data-detail]', grid).forEach(function (b) {
+      b.addEventListener('click', function () { openModal(b.getAttribute('data-detail')); });
+    });
+    $('[data-pick]', grid).forEach(function (b) {
+      b.addEventListener('click', function () { pickRoute(b.getAttribute('data-pick')); });
+    });
+  }
+
+  function openModal(id) {
+    var r = ROUTES.filter(function (x) { return x.id === id; })[0];
+    if (!r) return;
+    var html = '' +
+      '<div class="modal-head">' +
+        '<span class="eyebrow">' + esc(r.theme) + '</span>' +
+        '<h2 id="modalTitle">' + esc(r.name) + '</h2>' +
+        '<p>' + esc(r.blurb) + '</p>' +
+        '<div class="modal-tags">' + r.tags.map(function (t) { return '<span class="tag">' + esc(t) + '</span>'; }).join('') + '</div>' +
+      '</div>' +
+      '<div class="modal-section"><h3>當日時間軸</h3>' +
+        r.timeline.map(function (t) {
+          return '<div class="tl-item ' + (t.kind === 'calm' ? 'calm' : '') + '">' +
+            '<div class="tl-time">' + esc(t.time) + '</div>' +
+            '<div class="tl-rail"><div class="dot"></div></div>' +
+            '<div class="tl-content"><b>' + esc(t.title) + '</b><p>' + esc(t.desc) + '</p></div>' +
+          '</div>';
+        }).join('') +
+      '</div>' +
+      '<div class="modal-section"><h3>預算參考（兩人）</h3><div class="budget-box">' +
+        r.budget.map(function (b) { return '<div class="budget-row"><span>' + esc(b[0]) + '</span><b>' + esc(b[1]) + '</b></div>'; }).join('') +
+        '<div class="budget-row" style="border-top:1px dashed var(--line);margin-top:8px;padding-top:10px"><span><b>起價</b></span><b style="color:var(--rose)">' + esc(r.priceNote) + '</b></div>' +
+      '</div></div>' +
+      '<p class="fineprint">' + esc(r.highlight) + ' 價錢與時段以工作室最新公布為準。</p>' +
+      '<div class="modal-cta">' +
+        '<button class="btn btn-primary" type="button" data-modal-pick="' + r.id + '">選這條路線</button>' +
+        '<button class="btn btn-ghost" type="button" data-close>稍後再說</button>' +
+      '</div>';
+
+    $('#modalContent').innerHTML = html;
+    var modal = $('#routeModal');
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    $('[data-close]', modal).forEach(function (el) {
+      if (!el.dataset.bound) { el.addEventListener('click', closeModal); el.dataset.bound = '1'; }
+    });
+    $('[data-modal-pick]', modal).forEach(function (b) {
+      b.addEventListener('click', function () { pickRoute(b.getAttribute('data-modal-pick')); closeModal(); });
+    });
+    $('.modal-close', modal).focus();
+  }
+
+  function closeModal() {
+    var modal = $('#routeModal');
+    modal.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function pickRoute(id) {
+    var sel = $('#routeSelect');
+    if (sel) sel.value = id;
+    updateTotal();
+    var target = $('#booking');
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function renderWorkshops() {
+    var cats = ['全部'];
+    WORKSHOPS.forEach(function (w) { if (cats.indexOf(w.cat) === -1) cats.push(w.cat); });
+    var filters = $('#wsFilters');
+    filters.innerHTML = cats.map(function (c, i) {
+      return '<button class="fbtn' + (i === 0 ? ' on' : '') + '" type="button" data-cat="' + esc(c) + '">' + esc(c) + '</button>';
+    }).join('');
+    $('.fbtn', filters).forEach(function (b) {
+      b.addEventListener('click', function () {
+        $('.fbtn', filters).forEach(function (x) { x.classList.remove('on'); });
+        b.classList.add('on');
+        paintWorkshops(b.getAttribute('data-cat'));
+      });
+    });
+    paintWorkshops('全部');
+  }
+
+  function paintWorkshops(cat) {
+    var grid = $('#wsGrid');
+    var list = WORKSHOPS.filter(function (w) { return cat === '全部' || w.cat === cat; });
+    grid.innerHTML = list.map(function (w) {
+      return '<article class="ws">' +
+        '<h3>' + esc(w.name) + '</h3>' +
+        '<div class="ws-meta"><span class="tag">' + esc(w.cat) + '</span><span class="tag">' + esc(w.area) + '</span></div>' +
+        '<p>' + esc(w.desc) + '</p>' +
+        '<div class="ws-foot"><b>' + esc(w.price) + '</b><span>' + '★'.repeat(w.stars) + '</span></div>' +
+      '</article>';
+    }).join('');
+  }
+
+  function renderForm() {
+    var sel = $('#routeSelect');
+    sel.innerHTML = '<option value="">請選擇路線</option>' + ROUTES.map(function (r) {
+      return '<option value="' + r.id + '">' + esc(r.name) + ' — ' + esc(r.theme) + '</option>';
+    }).join('');
+
+    var list = $('#addonList');
+    list.innerHTML = ADDONS.map(function (a) {
+      return '<label class="addon"><input type="checkbox" value="' + a.id + '">' +
+        '<span><b>' + esc(a.name) + ' +' + money(a.price) + '</b><span>' + esc(a.desc) + '</span></span></label>';
+    }).join('');
+
+    var today = new Date();
+    var local = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    $('#dateInput').min = local;
+
+    sel.addEventListener('change', updateTotal);
+    $('input[type=checkbox]', list).forEach(function (c) { c.addEventListener('change', updateTotal); });
+    updateTotal();
+  }
+
+  function updateTotal() {
+    var id = $('#routeSelect').value;
+    var route = ROUTES.filter(function (r) { return r.id === id; })[0];
+    var sum = route ? route.basePrice : 0;
+    $('#addonList input:checked').forEach(function (c) {
+      var a = ADDONS.filter(function (x) { return x.id === c.value; })[0];
+      if (a) sum += a.price;
+    });
+    $('#totalPrice').textContent = money(sum);
+    $('#priceHint').textContent = route
+      ? '以「' + route.name + '」起價計算，實際以工作室與餐廳確認為準。'
+      : '先選一條路線，加上加購項目後會即時計算。';
+  }
+
+  function getIntents() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY) || '[]'); }
+    catch (e) { return []; }
+  }
+
+  function updateCount() {
+    var el = $('#localCount');
+    if (el) el.textContent = getIntents().length;
+  }
+
+  function submitForm(e) {
+    e.preventDefault();
+    var err = $('#formError');
+    var routeId = $('#routeSelect').value;
+    var date = $('#dateInput').value;
+    var name = $('#nameInput').value.trim();
+    var contact = $('#contactInput').value.trim();
+
+    if (!routeId || !date || !name || !contact) {
+      err.textContent = '請填寫路線、日期、稱呼與聯絡方式。';
+      err.hidden = false;
+      return;
+    }
+    err.hidden = true;
+
+    var route = ROUTES.filter(function (r) { return r.id === routeId; })[0];
+    var chosen = $('#addonList input:checked').map(function (c) { return c.value; });
+    var addonNames = ADDONS.filter(function (a) { return chosen.indexOf(a.id) !== -1; }).map(function (a) { return a.name; });
+    var total = route.basePrice + ADDONS.reduce(function (s, a) { return s + (chosen.indexOf(a.id) !== -1 ? a.price : 0); }, 0);
+
+    var intent = {
+      ref: 'CD-' + Date.now().toString(36).toUpperCase().slice(-6),
+      route: route.name,
+      date: date,
+      time: $('#timeInput').value,
+      name: name,
+      contact: contact,
+      note: $('#noteInput').value.trim(),
+      addons: addonNames,
+      total: total,
+      createdAt: new Date().toISOString()
+    };
+
+    var intents = getIntents();
+    intents.push(intent);
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(intents)); } catch (ignore) {}
+
+    $('#successRef').textContent = intent.ref;
+    $('#successSummary').innerHTML =
+      '<div><span>路線</span><b>' + esc(intent.route) + '</b></div>' +
+      '<div><span>日期時間</span><b>' + esc(intent.date) + ' ' + esc(intent.time) + '</b></div>' +
+      '<div><span>加購</span><b>' + esc(intent.addons.length ? intent.addons.join('、') : '無') + '</b></div>' +
+      '<div><span>預計總價</span><b>' + money(intent.total) + '</b></div>';
+
+    $('#bookingForm').hidden = true;
+    $('#successBox').hidden = false;
+    updateCount();
+  }
+
+  function init() {
+    renderRoutes();
+    renderWorkshops();
+    renderForm();
+    updateCount();
+
+    var modal = $('#routeModal');
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+
+    $('#bookingForm').addEventListener('submit', submitForm);
+    $('#resetBtn').addEventListener('click', function () {
+      $('#bookingForm').reset();
+      $('#bookingForm').hidden = false;
+      $('#successBox').hidden = true;
+      updateTotal();
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+</script>
 </body>
 </html>
